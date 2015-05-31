@@ -14,7 +14,7 @@ install_JDK8() {
 		echo "---->Downloading and installing java $jdk_dir"	
 		
 		curl -LO -H "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u45-b14/$jdk_archive
-		ls -ltr $tmp_dir/$jdk_archive
+		ls -ltr $install_dir/$tmp_dir/$jdk_archive
 		if [ ! -d "$install_dir/jdk" ]; then
     		mkdir $install_dir/jdk
     	else
@@ -23,7 +23,7 @@ install_JDK8() {
     		mkdir $install_dir/jdk
     	fi
 		cd $install_dir/jdk
-		tar xvfz $tmp_dir/$jdk_archive
+		tar xvfz $install_dir/$tmp_dir/$jdk_archive
 		export PATH=$install_dir/jdk/$jdk_dir/bin:$PATH
 		export JAVA_HOME=$install_dir/jdk/$jdk_dir
 	else
@@ -43,4 +43,4 @@ wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -O bin/lein
 
 chmod +x bin/lein
 
-lein self-install
+bin/lein self-install
