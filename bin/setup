@@ -9,9 +9,10 @@ export jdk_dir=jdk1.8.0_45
 export install_dir=${OPENSHIFT_CLOJURE_DIR}
 
 install_JDK8() {
+	pushd $tmp_dir
 	if [ ! -e "$install_dir/jdk/$jdk_dir/bin/java" ]; then
 		echo "---->Downloading and installing java $jdk_dir"	
-		cd $tmp_dir
+		
 		curl -LO -H "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u45-b14/$jdk_archive
 		if [ ! -d "$install_dir/jdk" ]; then
     		mkdir $install_dir/jdk
@@ -27,6 +28,7 @@ install_JDK8() {
 	else
 		echo "---->Java $jdk_dir already installed"
 	fi
+	popd
 }
 mkdir -p tmp/build/out
 tmp_dir=tmp/build/out
