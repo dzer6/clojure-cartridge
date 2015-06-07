@@ -12,8 +12,6 @@ function start() {
   echo "Starting application"
   cd ${OPENSHIFT_REPO_DIR}
   ${OPENSHIFT_CLOJURE_DIR}/bin/lein version > ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1
-  ${OPENSHIFT_CLOJURE_DIR}/bin/lein ragtime migrate >> ${OPENSHIFT_CLOJURE_DIR}/log/migrate.log 2>&1
-  ${OPENSHIFT_CLOJURE_DIR}/bin/lein cljsbuild once >> ${OPENSHIFT_CLOJURE_DIR}/log/cljsbuild.log 2>&1
   nohup ${OPENSHIFT_CLOJURE_DIR}/bin/lein trampoline run >> ${OPENSHIFT_CLOJURE_DIR}/log/server.log 2>&1 &
   echo $! > ${OPENSHIFT_CLOJURE_DIR}/clojure.pid
   return 0
